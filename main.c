@@ -30,14 +30,14 @@ int main(int argc, char** argv) {
     }
 
     // read into buffer + get character count
-    size_t csize = fread(buffer, 1, fsize, file);
+    size_t ccount = fread(buffer, 1, fsize, file);
 
     // null terminate
-    buffer[csize] = '\0';
+    buffer[ccount] = '\0';
 
     // trim new line
-    if(buffer[csize -1] == '\n') {
-	buffer[csize -1] = '\0';
+    if(buffer[ccount -1] == '\n') {
+	buffer[ccount -1] = '\0';
     }
 
     printf("%s", buffer);
