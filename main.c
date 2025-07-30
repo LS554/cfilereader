@@ -16,20 +16,26 @@ int main(int argc, char** argv) {
 	perror(errormsg);
 	return 1;
     }
+	
+    // get file size
     fseek(file, 0, SEEK_END);
     long int fsize = ftell(file);
     rewind(file);
 
+    // allocate for string
     char* buffer = malloc(fsize + 1);
     if (!buffer) {
 	fprintf(stderr, "Failed to allocate enough memory for string\n");
 	return 1;
     }
 
+    // read into buffer + get character count
     size_t csize = fread(buffer, 1, fsize, file);
 
+    // null terminate
     buffer[csize] = '\0';
 
+    // trim new line
     if(buffer[csize -1] == '\n') {
 	buffer[csize -1] = '\0';
     }
